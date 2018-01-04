@@ -10,28 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180102213033) do
+ActiveRecord::Schema.define(version: 20180102210042) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "backpacks", force: :cascade do |t|
-    t.bigint "user_id"
-    t.integer "item_id"
-    t.index ["user_id"], name: "index_backpacks_on_user_id"
-  end
-
   create_table "items", force: :cascade do |t|
     t.string "name"
     t.string "img"
-    t.integer "effect"
+    t.integer "healthEffect"
+    t.integer "ammoEffect"
+    t.string "description"
+  end
+
+  create_table "scores", force: :cascade do |t|
+    t.integer "score"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_scores_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
-    t.integer "score"
     t.integer "level"
   end
 
-  add_foreign_key "backpacks", "users"
+  add_foreign_key "scores", "users"
 end

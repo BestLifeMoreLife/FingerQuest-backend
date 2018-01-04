@@ -1,4 +1,3 @@
 class User < ActiveRecord::Base
-  has_many :backpacks
-  has_many :items, through: :backpacks
+  has_many :scores
 end
